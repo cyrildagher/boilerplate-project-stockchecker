@@ -24,5 +24,8 @@
 		"node",
 		"express"
 	],
-	"license": "MIT"
+	"license": "MIT",
+	"devDependencies": {
+		"mongodb-memory-server": "^9.5.0"
+	}
 }

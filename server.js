@@ -14,15 +14,18 @@ const app = express();
 
 app.set('trust proxy', true);
 
-// Content Security Policy: only scripts and styles may load from this origin (user story 2).
-app.use(helmet());
+// User story 2: CSP — only scripts and CSS from this app (script-src / style-src 'self').
+// default-src 'self' aligns with Helmet/FCC checks while keeping other same-origin resources consistent.
 app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      scriptSrc: ["'self'"],
-      styleSrc: ["'self'"]
-    },
-    browserSniff: false
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'"],
+        styleSrc: ["'self'"]
+      },
+      browserSniff: false
+    }
   })
 );
 
